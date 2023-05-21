@@ -3,8 +3,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
 import HomeScreen from "../Screens//HomeScreen";
-import MyJobs from "../Screens/MyJobs.js";
+import MyJobs from "../Screens/MyJobs";
 import Account from "../Screens/Account";
+import Dashboard from "../Screens/Dashboard";
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +36,7 @@ export function MainNavigator() {
       />
       <Tab.Screen
         name="MyJobs"
-        component={MyJobs}
+        component={Dashboard}
         options={{
           tabBarLabel: "MyJobs",
           tabBarIcon: ({ color, size }) => (
