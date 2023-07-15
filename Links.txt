@@ -1,0 +1,7 @@
+https://medium.com/@antunes.b.leonardo/set-up-a-login-flow-with-firebase-and-redux-saga-303ed2a116b8
+
+
+
+https://github.com/mattfrances/FirebaseExpoAuthentication/blob/main/screens/LoginScreen.js -- not redux saga
+
+https://github.com/instamobile/react-native-firebase

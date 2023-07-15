@@ -41,11 +41,11 @@ const Dashboard = ({
           style={styles.FlatList}
         ></FlatList>
       </View>
-      <Text>Dashbboard Item s</Text>
+      {/* <Text>Dashbboard Item s</Text>
       <Text>API Calling Status : {status}</Text>
       {errorMessage !== "" && <Text>{errorMessage}</Text>}
       <Text>API Response :</Text>
-      <Text>{JSON.stringify(items, null, 4)}</Text>
+      <Text>{JSON.stringify(items, null, 4)}</Text> */}
     </ScrollView>
   );
 };

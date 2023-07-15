@@ -2,14 +2,16 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import HomeScreen from "../Screens//HomeScreen";
+import HomeScreen from "../Screens/HomeScreen";
 import MyJobs from "../Screens/MyJobs";
 import Account from "../Screens/Account";
 import Dashboard from "../Screens/Dashboard";
+import ForgotPassword from "../Screens/Auth/ForgotPassword";
+import CatList from "../Screens/CatList";
 
 const Tab = createBottomTabNavigator();
 
-export function MainNavigator() {
+export function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -26,7 +28,7 @@ export function MainNavigator() {
     >
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={CatList}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => {
@@ -36,7 +38,7 @@ export function MainNavigator() {
       />
       <Tab.Screen
         name="MyJobs"
-        component={Dashboard}
+        component={MyJobs}
         options={{
           tabBarLabel: "MyJobs",
           tabBarIcon: ({ color, size }) => (
@@ -47,7 +49,7 @@ export function MainNavigator() {
       />
       <Tab.Screen
         name="Account"
-        component={Account}
+        component={ForgotPassword}
         options={{
           tabBarLabel: "Account",
           tabBarIcon: ({ color, size }) => (
@@ -58,4 +60,4 @@ export function MainNavigator() {
     </Tab.Navigator>
   );
 }
-export default MainNavigator;
+export default TabNavigator;
