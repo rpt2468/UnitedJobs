@@ -7,9 +7,22 @@ import MyJobs from "../Screens/MyJobs";
 import Account from "../Screens/Account";
 import Dashboard from "../Screens/Dashboard";
 import ForgotPassword from "../Screens/Auth/ForgotPassword";
-import CatList from "../Screens/CatList";
+import JobList from "../Screens/JobList";
+import JobDetails from "../Screens/JobDetails";
+
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Tab = createBottomTabNavigator();
+const HomeStack = createNativeStackNavigator();
+
+function JobStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={JobList} />
+      <HomeStack.Screen name="Details" component={JobDetails} />
+    </HomeStack.Navigator>
+  );
+}
 
 export function TabNavigator() {
   return (
@@ -28,7 +41,7 @@ export function TabNavigator() {
     >
       <Tab.Screen
         name="Home"
-        component={CatList}
+        component={JobStackScreen}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => {
@@ -57,6 +70,7 @@ export function TabNavigator() {
           ),
         }}
       />
+
     </Tab.Navigator>
   );
 }

@@ -16,8 +16,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { getCats } from "../Api/catapi";
+import JobDetails from "./JobDetails";
 
-export default class CatList extends React.Component {
+
+export default class JobList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,24 +49,32 @@ export default class CatList extends React.Component {
   ItemSeparator = () => <View style={styles.separator} />;
 
   renderItemComponent = (data) => (
-    <View style={styles.topview}>
-      <TouchableOpacity style={styles.container}>
+      <View style={styles.topview}>
+      <TouchableOpacity style={styles.container} onPress={()=>this.props.navigation.navigate('Details', { jobId: data.item.id})}>
         <View
           style={[
             styles.container,
             {
               // Try setting `flexDirection` to `"row"`.
               flexDirection: "row",
-              borderColor: "#EEEEEE" ,borderWidth:3 
+              borderColor: "#EEEEEE",
+              borderWidth:3 
             },
           ]}
         >
-          <View style={{ flex: 1, }}>
-            <Text>Image</Text>
-          
+          <View style={{ flex: 1,textAlign: 'center', justifyContent: 'center',  }}>
+       
+          {/* <Image 
+            style={styles.tinyLogo}
+          source={{
+            uri: 'https://cdn.wfp.org/guides/ui/v1.0.0/assets/logos/emblem/wfp-logo-emblem-blue.png',
+          }}
+          /> */}
           </View>
-          <View style={{ flex: 4, backgroundColor: "white" }}>
+          <View style={{ flex:4, backgroundColor: "white" }}>
             <Text style={styles.title}>Web Developer</Text>
+            <Text style={styles.subtext}>United Nations</Text>
+            <Text style={styles.subtext}>Cairo,Egypt • Full time • Last Date: 14th July </Text>
           </View>
         </View>
 
@@ -100,8 +110,20 @@ const styles = StyleSheet.create({
   },
   title: {
     color:"#212121",
-    fontSize:20,
-    fontWeight:"bold"
+    fontSize:16,
+    fontWeight:"500",
+    margin:4
+  },
+  subtext :
+  {
+    color:"#9E9E9E",
+    margin:3,
+    fontWeight:"400"
+  },
+  tinyLogo: {
+    height: 50,
+    width:50,
+    alignSelf: 'center'
   },
   container: {
     height: 100,
