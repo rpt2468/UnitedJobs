@@ -35,15 +35,6 @@ export default class JobList extends React.Component {
   fetchCats() {
     this.setState({ refreshing: true });
     this.setState({ data: getCats, refreshing: false });
-    // console.log("Cats",getCats);
-    // getCats(10, 10) // 10 random results from 10th page
-    //   .then(res => res.json())
-    //   .then(resJson => {
-    //     this.setState({ data: resJson, refreshing: false });
-    //   }).catch(e => {
-    //     console.log(e);
-    //     this.setState({ refreshing: false });
-    //   });
   }
 
   ItemSeparator = () => <View style={styles.separator} />;
@@ -64,12 +55,7 @@ export default class JobList extends React.Component {
         >
           <View style={{ flex: 1,textAlign: 'center', justifyContent: 'center',  }}>
        
-          {/* <Image 
-            style={styles.tinyLogo}
-          source={{
-            uri: 'https://cdn.wfp.org/guides/ui/v1.0.0/assets/logos/emblem/wfp-logo-emblem-blue.png',
-          }}
-          /> */}
+    
           </View>
           <View style={{ flex:4, backgroundColor: "white" }}>
             <Text style={styles.title}>Web Developer</Text>

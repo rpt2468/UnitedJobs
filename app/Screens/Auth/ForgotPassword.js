@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native-web";
-import { Button, TextInput, Text, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import { TextInput, Text, TouchableOpacity } from "react-native";
 import styles from "./Styles";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
@@ -13,6 +12,8 @@ export default function () {
     sendPasswordResetEmail(auth, email)
       .then(() => {
         alert("Password reset Email sent.");
+        navigation.navigate("Registration")
+
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -25,7 +26,7 @@ export default function () {
     <View>
       <TextInput
         style={styles.input}
-        placeholder="E-mails"
+        placeholder="E-mail"
         placeholderTextColor="#aaaaaa"
         onChangeText={(text) => setEmail(text)}
         value={email}

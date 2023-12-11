@@ -31,6 +31,12 @@ export default function LoginScreen({ navigation }) {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userAuth) => {
+
+        if(userAuth.user.emailVerified == false)
+        {
+          alert("You have not verified your Email. Please verify your email and login.")
+          return;
+        }
         dispatch(
           userSignedIn({
             email: userAuth.user.email,

@@ -20,7 +20,7 @@ const MainNavigator = () => {
   const isSignedIn = false;
   return (
     <NavigationContainer>
-      {usr?.user?.email == null ? (
+      {usr?.user?.email != null ? (
         <>
           <TabNavigator />
         </>

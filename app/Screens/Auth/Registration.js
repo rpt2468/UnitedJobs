@@ -1,12 +1,15 @@
+//Creating user  : https://firebase.google.com/docs/auth/web/password-auth#create_a_password-based_account
+//Sending Email verification :
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
+  sendEmailVerification,
 } from "firebase/auth";
 
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/core";
-import { Text, TextInput, TouchableOpacity,View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 
 import {} from "./../../Firebase/Config";
@@ -24,15 +27,6 @@ export default function Registration() {
   const auth = getAuth();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       console.log("gil...");
-  //     }
-  //   });
-
-  //   return unsubscribe;
-  // }, []);
 
   const handleSignUp = () => {
     console.log("Registration starting..");
@@ -41,28 +35,34 @@ export default function Registration() {
       return;
     }
 
+    const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userAuth) => {
-        updateProfile(userAuth.user, {
+      .then((userCredential) => {
+        updateProfile(userCredential.user, {
           displayName: fullName,
-        })
-          .then(() => {
-            dispatch(
-              userSignedIn({
-                email: userAuth.user.email,
-                fullName: userAuth.user.displayName,
-                uid: userAuth.user.uid,
-              })
-            );
+        });
+        sendEmailVerification(userCredential.user);
+        alert("email sent");
+      })
+      .then(() => {
+        alert(auth)
+        alert(auth.currentUser)
+     alert(auth.currentUser.email)
+        dispatch(
+          userSignedIn({
+            email: auth.currentUser.email,
+            fullName: auth.currentUser.displayName,
+            uid: auth.currentUser.uid,
           })
-          .catch((error) => {
-            alert(error);
-          });
+        );
       })
       .catch((error) => {
-        alert(error.message);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
       });
-  };
+
+    }
 
   const onStatusCheckPress = () => {
     const user = auth.currentUser;
